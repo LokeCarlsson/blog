@@ -1,11 +1,12 @@
 {
-  "name": "blog",
+  "name": "nuxtify-cms",
   "version": "1.0.0",
-  "description": "Personal blog written in Nuxt + Netlify CMS",
-  "author": "Loke Carlsson <carlssonloke@gmail.com>",
+  "description": "Nuxt.js + Netlify CMS project",
+  "author": "Eko Eryanto <ekoeryanto@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "serve": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -13,23 +14,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "netlify-cms": "latest",
-    "nuxt": "latest",
-    "nuxtent": "latest",
-    "@nuxtjs/axios": "latest"
+    "nuxt": "^1.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "latest",
-    "eslint": "latest",
-    "eslint-config-standard": "latest",
-    "eslint-loader": "latest",
-    "eslint-plugin-html": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-node": "latest",
-    "eslint-plugin-promise": "latest",
-    "eslint-plugin-standard": "latest",
-    "node-sass": "latest",
-    "nuxt-netlify-cms": "latest",
-    "sass-loader": "latest"
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "glob": "^7.1.2"
   }
 }

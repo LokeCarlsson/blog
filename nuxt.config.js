@@ -1,49 +1,48 @@
+var glob = require('glob');
+var path = require('path');
+
+// Enhance Nuxt's generate process by gathering all content files from Netifly CMS
+// automatically and match it to the path of your Nuxt routes.
+// The Nuxt routes are generate by Nuxt automatically based on the pages folder.
+var dynamicRoutes = getDynamicPaths({
+  '/blog': 'blog/posts/*.json'
+});
+
+
 module.exports = {
   /*
   ** Headers of the page
   */
   head: {
-    title: 'Vue Static CMS',
+    title: 'nuxtify-cms',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Nuxt.js + Netlify CMS project' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
-  ** Customize the progress-bar color
+  ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  /*
+  ** Route config for pre-rendering
+  */
+  generate: {
+    routes: dynamicRoutes
+  },
   /*
   ** Build configuration
   */
   build: {
-    loaders: [
-      {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 1000, // 1KO
-          name: 'img/[name].[hash:7].[ext]'
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        query: {
-          limit: 1000, // 1 KO
-          name: 'fonts/[name].[hash:7].[ext]'
-        }
-      }
-    ],
     /*
-    ** Run ESLINT on save
+    ** Run ESLint on save
     */
-    extend (config, ctx) {
-      if (ctx.isClient) {
+    extend(config, { isDev, isClient }) {
+      if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -52,26 +51,20 @@ module.exports = {
         })
       }
     }
-  },
-  css: [
-    { src: '~assets/styles/app.scss', lang: 'scss' }
-  ],
-  plugins: [
-  ],
-  modules: [
-    'nuxt-netlify-cms',
-    'nuxtent'
-  ],
-  nuxtent: {
-    content: {
-      permalink: ':slug',
-      page: '/_post',
-      isPost: false,
-      generate: [
-        'get',
-        'getAll'
-      ]
-    }
   }
 }
 
+/**
+ * Create an array of URLs from a list of files
+ * @param {*} urlFilepathTable
+ */
+function getDynamicPaths(urlFilepathTable) {
+  return [].concat(
+    ...Object.keys(urlFilepathTable).map(url => {
+      var filepathGlob = urlFilepathTable[url];
+      return glob
+        .sync(filepathGlob, { cwd: 'content' })
+        .map(filepath => `${url}/${path.basename(filepath, '.json')}`);
+    })
+  );
+}

@@ -1,77 +1,65 @@
 <template>
   <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        Blog
-      </h1>
-      <h3 class="subtitle">
-        Frontend and other coding stuff.
-      </h3>
-      <h4>Written by Loke Carlsson</h4>
-      <div class="recent-posts">
-        <div v-for="post in posts" :key="post.date" class="row post mb-5 justify-content-center">
-          <div class="col-sm-10">
-            <h6 class="created-at" v-html="post.date"></h6>
-            <h2>
-              <nuxt-link 
-                class="post-title" 
-                :to="post.permalink"
-              >
-                {{ post.title }}
-              </nuxt-link>
-            </h2>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2>Blog</h2>
+    <ul>
+      <li v-for="post in posts" :key="post.date">
+        <nuxt-link :to="post._path">
+          {{ post.title }}
+        </nuxt-link>
+      </li>
+    </ul>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import AppLogo from '~/components/AppLogo.vue';
 
 export default {
   components: {
-    Logo
+    AppLogo
   },
-  async asyncData ({ app }) {
-    return {
-      posts: await app.$content('/').getAll()
-    }
+  data() {
+    // Using webpacks context to gather all files from a folder
+    const context = require.context('~/content/blog/posts/', false, /\.json$/);
+
+    const posts = context.keys().map(key => ({
+      ...context(key),
+      _path: `/blog/${key.replace('.json', '').replace('./', '')}`
+    }));
+
+    return { posts };
   }
-}
+};
 </script>
 
-<style lang="scss">
-@import '~assets/styles/variables.scss';
+<style>
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* 1 */
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
 
 .subtitle {
   font-weight: 300;
-  font-size: 32px;
-  line-height: 48px;
-  color: $text-color;
-  padding: 15px 30px;
-  width: 80%;
-  min-width: 250px;
-  display: block;
-  margin: auto;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
 }
 
 .links {
   padding-top: 15px;
-}
-
-.recent-posts {
-  border-top: 1px solid $text-color;
-  width: 80%;
-  min-width: 250px;
-  display: block;
-  padding: 30px 0;
-  margin: 30px auto 0;
-  text-align: left;
-  .created-at {
-    margin-bottom: 10px;
-  }
 }
 </style>
