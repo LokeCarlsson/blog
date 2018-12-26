@@ -1,6 +1,6 @@
-# nuxtify-cms
+# A Nuxtjs Website using Storyblok
 
-> Nuxt.js + Netlify CMS project
+> Nuxt.js demo project using Storyblok as CMS with the true live preview feature.
 
 ## Build Setup
 
@@ -19,17 +19,9 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## Setup
 
-## Edit content
+1. [Register](https://app.storyblok.com/#!/signup) at Storyblok for free.
+2. Create a new DEMO Space and exchange the preview token with your own in the file nuxt.config.js.
 
-Access `yourwebsite.com/admin`, e.g. `localhost:3000/admin`.
-
-## Manage dynamic routes
-
-When you use Netlify CMS' `folder` type, you actually create dynamic routes. For example, when creating a blog,
-you render different content files with the same template. And for the blog to know which content to render,
-it looks at the url and gets the specific content file. That's a dynamic route.
-
-So If you create a `folder` type with Netlify CMS, add the folder as glob to the `dynamicRoutes` variable
-in the `nuxt.config.js`.
+For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js) and for the whole Setup you can have a look at [our step by step Guide](https://www.storyblok.com/tp/nuxt-js-multilanguage-website-tutorial)

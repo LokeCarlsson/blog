@@ -1,27 +1,60 @@
-var glob = require('glob');
-var path = require('path');
+const StoryblokClient = require('storyblok-js-client')
 
-// Enhance Nuxt's generate process by gathering all content files from Netifly CMS
-// automatically and match it to the path of your Nuxt routes.
-// The Nuxt routes are generate by Nuxt automatically based on the pages folder.
-var dynamicRoutes = getDynamicPaths({
-  '/blog': 'blog/posts/*.json'
-});
-
+// !!! Change to your Storyblok preview token
+const StoryblokToken = 'qQTqOxTlxSrQiW7f9FANDwtt'
 
 module.exports = {
+  mode: 'spa',
+  modules: [
+    ['storyblok-nuxt', {accessToken: StoryblokToken, cacheProvider: 'memory'}]
+  ],
+  plugins: [
+    '~/plugins/components',
+    '~/plugins/filters'
+  ],
+  router: {
+    middleware: 'languageDetection'
+  },
+  generate: {
+    routes: [
+      {route: '/'}
+    ]
+  },
+  /* generate: {
+    routes() {
+      let routes = []
+
+      const StoryblokClientInstance = new StoryblokClient({
+        accessToken: StoryblokToken
+      })
+
+      return StoryblokClientInstance.get('cdn/links')
+        .then((res) => {
+          for (i in res.data.links) {
+            routes.push({
+              route: '/' + res.data.links[i].slug
+            })
+          }
+
+          return routes
+        })
+    }
+  },*/
   /*
   ** Headers of the page
   */
   head: {
-    title: 'nuxtify-cms',
+    title: 'mywebsite',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js + Netlify CMS project' }
+      { hid: 'description', name: 'description', content: 'Storyblok project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css' },
+      { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i' }
     ]
   },
   /*
@@ -29,20 +62,26 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
-  ** Route config for pre-rendering
-  */
-  generate: {
-    routes: dynamicRoutes
-  },
-  /*
   ** Build configuration
   */
   build: {
+    optimization: {
+      splitChunks: {
+        chunks: 'async',
+      }
+    },
+    splitChunks: {
+      pages: false,
+      vendor: true,
+      commons: true,
+      runtime: true,
+      layouts: false
+    },
     /*
     ** Run ESLint on save
     */
-    extend(config, { isDev, isClient }) {
-      if (isDev && isClient) {
+    extend (config, ctx) {
+      if (ctx.dev && process.client) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -52,19 +91,4 @@ module.exports = {
       }
     }
   }
-}
-
-/**
- * Create an array of URLs from a list of files
- * @param {*} urlFilepathTable
- */
-function getDynamicPaths(urlFilepathTable) {
-  return [].concat(
-    ...Object.keys(urlFilepathTable).map(url => {
-      var filepathGlob = urlFilepathTable[url];
-      return glob
-        .sync(filepathGlob, { cwd: 'content' })
-        .map(filepath => `${url}/${path.basename(filepath, '.json')}`);
-    })
-  );
 }
