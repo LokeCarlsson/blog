@@ -6,7 +6,7 @@
   </footer>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .bottom-footer {
   background: #e3f2ed;
   padding: 40px 0 120px 0;

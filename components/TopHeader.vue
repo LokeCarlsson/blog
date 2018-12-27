@@ -26,7 +26,7 @@
   </header>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
   .top-header {
     justify-content: space-between;
     padding-top: 30px;
