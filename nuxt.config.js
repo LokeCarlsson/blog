@@ -54,7 +54,8 @@ module.exports = {
   ** Router middleware
   */
   router: {
-    middleware: 'setCacheVersion'
+    middleware: 'setCacheVersion',
+    middleware: 'languageDetection'
   },
 
   /*
