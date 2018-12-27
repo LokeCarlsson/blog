@@ -9,7 +9,3 @@ npm-debug.log
 
 # Nuxt generate
 dist
-
-deploy
-gulpfile.js
-token.js

@@ -1,31 +1,42 @@
 <template>
-  <div class="body__wrap">
-    <div class="body__other">
-      <div v-if="!$store.state.settings.header.length"
-           v-editable="$store.state.settings">
-        Define header blocks here
-      </div>
-      <component :key="blok._uid"
-                 v-for="blok in $store.state.settings.header"
-                 :blok="blok"
-                 :is="blok.component | dashify"></component>
-    </div>
-    <main id="main" role="main" class="body__content">
-      <nuxt/>
-    </main>
-    <div class="body__other">
-      <div v-if="!$store.state.settings.footer.length"
-           v-editable="$store.state.settings">
-        Define footer blocks here
-      </div>
-      <component :key="blok._uid"
-                 v-for="blok in $store.state.settings.footer"
-                 :blok="blok"
-                 :is="blok.component | dashify"></component>
-    </div>
+  <div>
+    <nuxt/>
   </div>
 </template>
 
-<style lang="scss">
-@import '../assets/scss/styles.scss';
+<style>
+html {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.teaser,
+.column {
+  font-size: 2rem;
+  text-align: center;
+  line-height: 3;
+  background: #ebeff2;
+  border-radius: 10px;
+  margin: 10px 5px;
+}
+
+.grid {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+}
 </style>
+

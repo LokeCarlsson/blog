@@ -38,11 +38,11 @@ export default {
     })
   },
   asyncData (context) {
-    // Check if we are in the editor mode
+    // Check if we are in the editing mode
     let editMode = false
 
-    if (context.query._storyblok || context.isDev || (window && window.localStorage.getItem('_storyblok_draft_mode'))) {
-      if (window) {
+    if (context.query._storyblok || context.isDev || (typeof window !== 'undefined' && window.localStorage.getItem('_storyblok_draft_mode'))) {
+      if (typeof window !== 'undefined') {
         window.localStorage.setItem('_storyblok_draft_mode', '1')
         if (window.location == window.parent.location) {
           window.localStorage.removeItem('_storyblok_draft_mode')

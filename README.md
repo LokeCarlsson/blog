@@ -1,6 +1,11 @@
-# A Nuxtjs Website using Storyblok
+# Nuxt.js Storyblok Boilerplate
 
-> Nuxt.js demo project using Storyblok as CMS with the true live preview feature.
+## How to get started?
+
+1. [Register](https://app.storyblok.com/#!/signup) at Storyblok for free
+2. Create a new empty Space and exchange the preview token with your own in ```nuxt.config.js``` (not required if you have downloaded the project via app.storyblok.com)
+3. Read the Nuxt.js tutorial about Storyblok's concept: https://www.storyblok.com/tp/nuxt-js-multilanguage-website-tutorial
+4. Enjoy and start developing
 
 ## Build Setup
 
@@ -19,9 +24,4 @@ $ npm start
 $ npm run generate
 ```
 
-## Setup
-
-1. [Register](https://app.storyblok.com/#!/signup) at Storyblok for free.
-2. Create a new DEMO Space and exchange the preview token with your own in the file nuxt.config.js.
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js) and for the whole Setup you can have a look at [our step by step Guide](https://www.storyblok.com/tp/nuxt-js-multilanguage-website-tutorial)
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
