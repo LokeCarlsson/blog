@@ -3,10 +3,10 @@
     <component v-if="slide" :blok="slide" :is="slide.component"></component>
     <div class="teaser__pag">
       <button @click="handleDotClick(index)"
-              :key="index"
-              v-for="(blok, index) in blok.body"
-              :class="{'teaser__pag-dot--current': index == currentSlide}"
-              class="teaser__pag-dot">Next</button>
+        :key="index"
+        v-for="(blok, index) in blok.body"
+        :class="{'teaser__pag-dot--current': index == currentSlide}"
+        class="teaser__pag-dot">Next</button>
     </div>
   </div>
 </template>
@@ -23,10 +23,10 @@ export default {
 
   computed: {
     slide () {
-      let slides = this.blok.body && this.blok.body.filter((slide, index) => {
+      let slides = this.blok.body.filter((slide, index) => {
         return this.currentSlide === index
       })
-      if (slides && slides.length) {
+      if (slides.length) {
         return slides[0]
       }
       return null
