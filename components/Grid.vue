@@ -1,6 +1,6 @@
 <template>
-  <div v-editable="blok" class="grid">
-    <component :key="blok._uid" v-for="blok in blok.columns" :blok="blok" :is="blok.component | dashify"></component>
+  <div v-editable="blok" class="util__flex">
+    <component :key="blok._uid" v-for="blok in blok.columns" :blok="blok" :is="blok.component"></component>
   </div>
 </template>
 
