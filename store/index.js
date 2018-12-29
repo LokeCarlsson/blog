@@ -21,11 +21,6 @@ const createStore = () => {
       }
     },
     actions: {
-      loadCacheVersion ({ commit }) {
-        return this.$storyapi.get(`cdn/spaces/me`).then((res) => {
-          commit('setCacheVersion', res.data.space.version)
-        })
-      },
       loadSettings ({ commit }, context) {
         return this.$storyapi.get(`cdn/stories/${context.language}/settings`, {
           version: context.version
