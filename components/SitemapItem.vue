@@ -22,9 +22,11 @@ export default {
 <style lang="scss">
 .sitemap-item {
   padding: 5px 0;
+
   a {
     color: #8ba19a;
   }
+
   ul {
     margin-top: 10px;
     margin-bottom: 10px;
