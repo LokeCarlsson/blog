@@ -15,10 +15,10 @@
     <nav class="top-header__col top-header__second-navi">
       <ul class="top-header__nav top-header__nav--right">
         <li>
-          <nuxt-link class="top-header__link" to="/github">github</nuxt-link>
+          <nuxt-link class="top-header__link" to="/github">Github</nuxt-link>
         </li>
         <li>
-          <nuxt-link class="top-header__link" to="/linkedin">linkedin</nuxt-link>
+          <nuxt-link class="top-header__link" to="/linkedin">Linkedin</nuxt-link>
         </li>
       </ul>
     </nav>
@@ -47,5 +47,28 @@
 
   .top-header__second-navi {
     text-align: right;
+  }
+  .top-header__nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 0 20px 0 0;
+    }
+    &--right li {
+      padding-right: 0;
+      padding-left: 20px;
+    }
+  }
+  .top-header__link {
+    line-height: 1.5;
+    color: #000;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border .15s ease;
+    &:hover {
+      border-bottom: 2px solid #000;
+    }
   }
 </style>
