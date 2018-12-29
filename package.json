@@ -1,23 +1,35 @@
 {
-  "name": "vue-nuxt-storyblok-boilerplate",
-  "version": "1.0.0",
-  "description": "Nuxt.js Storyblok Boilerplate",
-  "author": "Alexander Feiglstorfer <delooks@gmail.com>",
-  "private": true,
+  "name": "lokecarlsson",
+  "version": "3.0.0",
+  "description": "A portfolio and blog",
+  "author": "Loke Carlsson <carlssonloke@gmail.com>",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
   },
   "dependencies": {
-    "cross-env": "^5.2.0",
-    "nuxt": "^2.0.0",
-    "storyblok-nuxt": "1.0.0"
+    "hoek": "^4.2.1",
+    "marked": "^0.3.12",
+    "nuxt": "^1.0.0-rc11",
+    "storyblok-nuxt": "^0.0.5"
   },
   "devDependencies": {
-    "node-sass": "^4.11.0",
-    "nodemon": "^1.11.0",
-    "sass-loader": "^7.1.0"
+    "babel-eslint": "^7.2.3",
+    "css-loader": "^0.28.8",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6"
   }
 }
